@@ -1,0 +1,20 @@
+<div class="tabs <%= @tabs_opts %>" id="<%= @tabs_group %>">
+  <div class="container">
+    <ul>
+      <% environment["tabs-#{@tabs_group}"].each_with_index do |(key, value), index| %>
+        <li<%= index == 0 ? ' class="is-active"' : ''%> data-tab="<%= index %>">
+          <a><span><%= key %></span></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div id="<%= @tabs_group %>-content">
+  <div class="container">
+    <% environment["tabs-#{@tabs_group}"].each_with_index do |(key, value), index| %>
+      <p <%= index == 0 ? ' class="is-active tab-content"' : 'class="tab-content"'%> data-content="<%= index %>">
+        <%= value %>
+      </p>
+    <% end %>
+  </div>
+</div>
