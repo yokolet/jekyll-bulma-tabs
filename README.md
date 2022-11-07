@@ -1,29 +1,102 @@
-# Jekyll::Bulma::Tabs
+# Jekyll Bulma Tabs Plugin
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/bulma/tabs`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a Jekyll tags plugin to add [bulma](https://bulma.io/) style tabs to the GitHub pages
+along with the [bulma-clean-theme](https://github.com/chrisrhymes/bulma-clean-theme).
 
-TODO: Delete this and the text above, and describe your gem
+This plugin was created based on the [Jekyll Tabs](https://github.com/Ovski4/jekyll-tabs) plugin.
+Like the Jekyll Tabs does, Jekyll Bulma Tabs has features:
+- works with multiple tab panels on the same page
+- doesn't require a specific JavaScript framework
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+#### Plugin
 
-    $ bundle add jekyll-bulma-tabs
+Add the plugin in the Jekyll GitHub pages `Gemfile`.
+```ruby
+group :jekyll_plugins do
+  # ... other gems
+  gem "jekyll-bulma-tabs"
+end
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Also, add the plugin in the Jekyll Github pages `_config.yml`.
+```yml
+plugins:
+  - jekyll-bulma-tabs
+```
 
-    $ gem install jekyll-bulma-tabs
+Run the command below to install the plugin.
+```bash
+bundle install
+```
+
+#### JavaScript and CSS
+Copy JavaScript and CSS files to the Jekyll Github pages public directory.
+In general, the places are `assets/js` and `assets/css`.
+- JavaScript: [https://raw.githubusercontent.com/yokolet/jekyll-bulma-tabs/main/docs/tabs.js](https://raw.githubusercontent.com/yokolet/jekyll-bulma-tabs/main/docs/tabs.js)
+- CSS: [https://raw.githubusercontent.com/yokolet/jekyll-bulma-tabs/main/docs/tabs.css](https://raw.githubusercontent.com/yokolet/jekyll-bulma-tabs/main/docs/tabs.css)
+
+Add `tabs.js` and `tabs.css` to  GitHub pages' header/footer area. Exactly what file depends on how the GitHub pages are
+created. For example, if the theme is bulma-clean-theme, the `tabs.js` goes to `_includes/footer-scripts.html` while the
+`tabs.css` goes to `_includes/head.html`.
+
+Example:
+- `_includes/footer-scripts.html`
+```html
+<script src="{{ "/assets/js/tabs.js" | prepend: site.baseurl }}" type="text/javascript"></script>
+```
+- `_includes/head.html`
+```html
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/tabs.css">
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Markup
+The markup looks like below:
 
-## Development
+````markdown
+{% tabs data-struct is-centered is-boxed %}
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+{% tab data-struct yaml %}
+```yaml
+hello:
+  - 'whatsup'
+  - 'hi'
+```
+{% endtab %}
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+{% tab data-struct json %}
+```json
+{
+    "hello": ["whatsup", "hi"]
+}
+```
+{% endtab %}
 
-## Contributing
+{% endtabs %}
+````
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jekyll-bulma-tabs.
+#### Description
+The syntax is:
+```markdown
+{% tabs tabs-group-id bulma-tabs-options %}
+{% tab tabs-group-id tab-title-1 %}
+contents1
+{% endtab %}
+{% tab tabs-group-id tab-title-2 %}
+contents2
+{% endtab %}
+{% endtabs %}
+```
+
+- tabs-group-id: (mandate) The id of tabs group and used to switch contents.
+- bulma-tabs-options: (optional) Among the bulma tabs styling options, those used with tabs class are supported such as `is-centered` or `is-boxed`.
+- tab-title: (mandate) The title appears in the tab.
+- contents: (mandate) The contents tied to the tab title.
+
+
+## License
+
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
