@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "A Jekyll plugin to add bulma compatible tabs."
   spec.description = "Generate a tabbed interface with bulma as a CSS framework."
-  spec.homepage = "https://github.com/yokolet/jekyll-bulma-tabs."
+  spec.homepage = "https://github.com/yokolet/jekyll-bulma-tabs"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
