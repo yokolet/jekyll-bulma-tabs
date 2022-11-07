@@ -96,6 +96,10 @@ contents2
 - tab-title: (mandate) The title appears in the tab.
 - contents: (mandate) The contents tied to the tab title.
 
+#### Usage Example
+
+- code: [code-example](https://raw.githubusercontent.com/idealapt404/idealapt404.github.io-code/main/algo/others/2022-11-07-maximum-69-number.md)
+- working tabs: [site](https://idealapt404.github.io/algo/others/2022-11-07-maximum-69-number)
 
 ## License
 
